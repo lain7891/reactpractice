@@ -1,8 +1,8 @@
 import React from "react";
-import Counter from "./components/Counter";
+import PortfolioContainer from "./components/PortfolioContainer";
 
 function App() {
-  return <Counter />;
+  return <PortfolioContainer />;
 }
 
 export default App;

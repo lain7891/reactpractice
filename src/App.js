@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   removeFriend= (id) => {
-    // friend.id !== id is an implicint returm
+    // friend.id !== id is an implicint returm which allows you to x a friend
 const newFriends = this.state.friends.filter((friend) => friend.id !== id);
 this.setState({ friends: newFriends })
   }
@@ -26,7 +26,10 @@ this.setState({ friends: newFriends })
         occupation={friend.occupation}
         location={friend.location}
         id={friend.id}
+        // the click needs to be called on the index.js inside the friend card so it works
         handleClick={this.removeFriend}
+        // need the key value because we are looping and using map. Helps react know what to remove
+        key={friend.id}
       />))}
 
      

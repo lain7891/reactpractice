@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import ResultList from "./ResultList";
-import API from "../utils/API";
+// import API from "../utils/API";
+import axios from "axios";
 
 class SearchResultContainer extends Component {
   state = {
     search: "",
-    results: []
+    results: [],
   };
 
   // When this component mounts, search the Giphy API for pictures of kittens
@@ -14,22 +15,31 @@ class SearchResultContainer extends Component {
     this.searchGiphy("kittens");
   }
 
-  searchGiphy = query => {
-    API.search(query)
-      .then(res => this.setState({ results: res.data.data }))
-      .catch(err => console.log(err));
+  searchGiphy = (query) => {
+    // API.search(query)
+    //   .then(res => this.setState({ results: res.data.data }))
+    //   .catch(err => console.log(err));
+
+    axios.get(
+      "https://api.giphy.com/v1/gifs/search?q=" +
+        this.state.search +
+        "&api_key=dc6zaTOxFJmzC&limit=20"
+    ).then((response) => {
+      console.log(response.data);
+      this.setState({results: response.data.data})
+    })
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   // When the form is submitted, search the Giphy API for `this.state.search`
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     this.searchGiphy(this.state.search);
   };

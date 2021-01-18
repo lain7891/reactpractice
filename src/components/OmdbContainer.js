@@ -22,9 +22,12 @@ class OmdbContainer extends Component {
       .then(res => this.setState({ result: res.data }))
       .catch(err => console.log(err));}
 
-      handleInputChange = event => {
-        const name = event.target.name;
-        const value = event.target.search;
+      // WITH THIS YOU CAN WRITE SOMETHING ON THE SEARCH BOX AND YOU SEE IT WRITTEN
+      handleInputChange = (e) => {
+        const { name, value } = e.target
+        // THE TWO LINES BELOW ARE SAME AS ABOVE
+        // const name = event.target.name;
+        // const value = event.target.search;
         this.setState({
           [name]: value
         });
@@ -42,7 +45,9 @@ class OmdbContainer extends Component {
             <Card
               heading={this.state.result.Title || "Search for a Movie to Begin"}
             >
-              {this.state.result.Title &&  (<MovieDetail
+               {/* CONDITIONAL RENDERING IS THE LINE 49. SAYS THAT IF WE HAVE A RESULLT TITLE THEN WE WE WILL HAVE ALL THE INFOR BELOW */}
+              {this.state.result.Title &&  
+              (<MovieDetail
                 title={this.state.result.Title}
                 src={this.state.result.Poster}
                 director={this.state.result.Director}

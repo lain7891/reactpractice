@@ -7,10 +7,12 @@ import Row from "../../components/Row";
 const Signup = () => {
 
   // 1. HOOKS
-  const [state, setState] = useState({
-    userName: "",
-    password: ""
-  });
+  // const [state, setState] = useState({
+  //   userName: "",
+  //   password: ""
+  // });
+
+  // Use below if you don't want to spread the object
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +31,8 @@ const Signup = () => {
           <Row className="form-group">
             <Col size="12">
               <input className="form-control" type="text" placeholder="Username" name="username" 
+              // onChange={(e)=> setState({...state, username: e.target.value})} Option that uses the spread ibject
+              // created the two separate states on line 17 and 18 and you can then call it as such below
               onChange={(e) => setUserName(e.target.value)} />
             </Col>
           </Row>
